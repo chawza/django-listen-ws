@@ -3,5 +3,11 @@
 	<body>
         {% include 'navigation.html' %}
 		<h1>The Counter</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_div }}
+            <button type="submit">Set</button>
+        </form>
+
 	</body>
 </html>
