@@ -18,14 +18,15 @@ async def handler(websocket):
     while True:
         try:
             message = await p.get_message()
-            if not message or message['type'] != 'message':
-                continue
-
-            new_counter = message['data']
-            await redis.set(CURR_COUNTER, int(new_counter))
-            await websocket.send(json.dumps({'counter': int(new_counter)}))
         except ws.ConnectionClosedOK:
             break
+
+        if not message or message['type'] != 'message':
+            continue
+
+        new_counter = message['data']
+        await redis.set(CURR_COUNTER, int(new_counter))
+        await websocket.send(json.dumps({'counter': int(new_counter)}))
 
 async def main():
     async with ws.serve(handler, '', '8001'):
