@@ -18,10 +18,7 @@ async def handler(websocket):
     while True:
         try:
             message = await p.get_message()
-            if not message:
-                continue
-
-            if message['type'] != 'message':
+            if not message or message['type'] != 'message':
                 continue
 
             new_counter = message['data']
