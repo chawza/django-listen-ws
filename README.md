@@ -1,4 +1,4 @@
-Demo on WSGI django page subscripe to websocket in different process.
+Demo on WSGI django page subscribe to websocket in different process.
 
 It uses redis as pubSub broker to send data between process
 
